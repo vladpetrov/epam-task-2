@@ -43,6 +43,7 @@ public final class RegexTools {
             matcher = pattern.matcher(text);
 
             resultString = matcher.replaceAll("");
+
         }
         return resultString;
     }

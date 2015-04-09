@@ -17,26 +17,26 @@ public class ThemeParser extends Parser {
     }
 
     @Override
-    public void parse(String text) {
-        parse(text, this.getTextObject().getRoot());
-    }
-
-    @Override
     public void parse(String text, TextComponent parentComponent) {
+        TextComponent parent;
+        TextComponent component = null;
+        List<String> matches;
+        String textForNextParser;
         if (RegexTools.matches(RegexConstants.THEME_REGEX, text)) {
-            TextComponent parent = parentComponent;
-            List<String> matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
+            parent = parentComponent;
+            matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
             for (String theme : matches) {
-                TextComponent component = new CompositeTextElement(theme);
+                component = new CompositeTextElement(theme);
                 parent.addTextComponent(component);
             }
-            String textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
-//            this.getNextParser().parse(textForNextParser);
+            textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
 
-            System.out.println(textForNextParser);
-
+//            for(TextComponent childComponent: parent.getChilds()) {
+//                this.getNextParser().parse(textForNextParser, childComponent);
+//            }
+            this.getNextParser().parse(textForNextParser, component);
         } else {
-            this.getNextParser().parse(text);
+            this.getNextParser().parse(text, this.getTextObject().getRoot());
         }
     }
 

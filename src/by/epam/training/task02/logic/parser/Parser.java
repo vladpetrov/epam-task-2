@@ -30,7 +30,9 @@ public abstract class Parser {
         return nextParser;
     }
 
-    public abstract void parse(String text);
+    public void parse(String text) {
+        parse(text, this.getTextObject().getRoot());
+    }
 
     public abstract void parse(String text, TextComponent parentComponent);
 
