@@ -8,26 +8,26 @@ import java.util.regex.Pattern;
 /**
  * Created by Higgs on 08.04.2015.
  */
-public final class RegexSearch {
+public final class RegexTools {
 
-    private static List<String> result;
+    private static List<String> resultList;
+    private static String resultString;
     private static Pattern pattern;
     private static Matcher matcher;
 
-    private RegexSearch() {
+    private RegexTools() {
     }
 
     public static List<String> findByRegex(String regex, String text) {
-
         if(matches(regex, text)) {                        //TODO: optimize code
-            matcher = pattern.matcher(text);
             pattern = Pattern.compile(regex, Pattern.MULTILINE);        //Multiline regex matching
-            result = new ArrayList<>();
+            matcher = pattern.matcher(text);
+            resultList = new ArrayList<>();
             while (matcher.find()) {
-                result.add(matcher.group());
+                resultList.add(matcher.group());
             }
         }
-        return result;
+        return resultList;
     }
 
     public static boolean matches(String regex, String text) {
@@ -36,5 +36,17 @@ public final class RegexSearch {
 
         return matcher.find();
     }
+
+    public static String removeRegexMatch(String regex, String text) {
+        if (matches(regex, text)) {
+            pattern = Pattern.compile(regex, Pattern.MULTILINE);
+            matcher = pattern.matcher(text);
+
+            resultString = matcher.replaceAll("");
+        }
+        return resultString;
+    }
+
+
 
 }

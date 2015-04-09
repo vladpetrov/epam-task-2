@@ -1,5 +1,6 @@
 package by.epam.training.task02.logic.parser;
 
+import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
 
 import java.util.regex.Pattern;
@@ -29,12 +30,8 @@ public abstract class Parser {
         return nextParser;
     }
 
-    public String parse(String text) {
-        String parsed = null;
-        if(getNextParser() != null) {
-            parsed = getNextParser().parse(text);
-        }
-        return parsed;
-    }
+    public abstract void parse(String text);
+
+    public abstract void parse(String text, TextComponent parentComponent);
 
 }

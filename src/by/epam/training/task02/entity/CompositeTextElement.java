@@ -11,6 +11,13 @@ public class CompositeTextElement extends TextComponent {
     private String contentText;
     private List<TextComponent> childs = new ArrayList<>();
 
+    public CompositeTextElement() {
+    }
+
+    public CompositeTextElement(String contentText) {
+        this.contentText = contentText;
+    }
+
     @Override
     public void setContentText(String contentText) {
         this.contentText = contentText;

@@ -9,6 +9,13 @@ public class LeafTextElement extends TextComponent {
 
     private String contentText;
 
+    public LeafTextElement() {
+    }
+
+    public LeafTextElement(String contentText) {
+        this.contentText = contentText;
+    }
+
     @Override
     public void setContentText(String contentText) {
         this.contentText = contentText;
