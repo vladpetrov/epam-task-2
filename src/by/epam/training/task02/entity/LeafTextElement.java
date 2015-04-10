@@ -60,9 +60,8 @@ public class LeafTextElement extends TextComponent {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("LeafTextElement{");
-        sb.append("contentText='").append(contentText).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "LeafTextElement{" +
+                "contentText='" + contentText + '\'' +
+                "} " + super.toString();
     }
 }

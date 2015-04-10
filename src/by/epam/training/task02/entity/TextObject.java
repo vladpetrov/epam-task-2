@@ -7,7 +7,7 @@ public class TextObject {
 
     private TextComponent root;
 
-    public TextObject(){
+    public TextObject() {
         root = new CompositeTextElement();
     }
 
@@ -36,10 +36,9 @@ public class TextObject {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("TextObject{");
-        sb.append("root=").append(root);
-        sb.append('}');
-        return sb.toString();
+        return "TextObject{" +
+                "root=" + root +
+                '}';
     }
 
 }

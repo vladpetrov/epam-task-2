@@ -38,9 +38,8 @@ public abstract class TextComponent {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("TextComponent{");
-        sb.append("hashCode: " + hashCode());
-        sb.append('}');
-        return sb.toString();
+        return "TextComponent{}";
     }
 }
+
+

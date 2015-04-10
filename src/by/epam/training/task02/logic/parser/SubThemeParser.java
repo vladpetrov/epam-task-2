@@ -23,38 +23,32 @@ public class SubThemeParser extends Parser {
         List<String> matches;
         String currText;
         String textForNextParser;
-        int index = 0;
+        int zeroIndex = 0;
+
         if (RegexTools.matches(RegexConstants.SUB_THEME_REGEX, text)) {
             parent = parentComponent;
             matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
-//            for (String subTheme : matches) {
-//                component = new CompositeTextElement(subTheme);
-//                parent.addTextComponent(component);
-//
-//            }
-
             currText = text;
-
             for (String match : matches) {
-                if (currText.indexOf(match) == 0) continue;
-                textForNextParser = currText.substring(index, currText.indexOf(match));
-                currText = RegexTools.removeRegexMatch(textForNextParser, currText);
-                textForNextParser = RegexTools.removeRegexMatch(RegexConstants.SUB_THEME_REGEX, textForNextParser);
+                if (currText.indexOf(match) == 0) {
+                    currText = RegexTools.removeFirstRegexMatch(RegexConstants.SUB_THEME_REGEX, currText);
+                    component = new CompositeTextElement(match);
+                    component.setContentText(match);
+                    parent.addTextComponent(component);
+                    continue;
+                }
+                textForNextParser = currText.substring(zeroIndex, currText.indexOf(match));
+                this.getNextParser().parse(textForNextParser, component);
+                component = new CompositeTextElement(match);
+                component.setContentText(match);
+                parent.addTextComponent(component);
 
-                index = text.indexOf(match);
+                currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
-
-
-//            textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
-
-//            for(TextComponent childComponent: parent.getChilds()) {
-//                this.getNextParser().parse(textForNextParser, childComponent);
-//            }
-//            this.getNextParser().parse(textForNextParser, component);
+            this.getNextParser().parse(currText, component);
         } else {
-            this.getNextParser().parse(text, this.getTextObject().getRoot());
+            this.getNextParser().parse(text, parentComponent);
         }
-
     }
 
     public static SubThemeParser getInstance() {

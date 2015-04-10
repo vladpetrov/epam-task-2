@@ -65,11 +65,10 @@ public class CompositeTextElement extends TextComponent {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("CompositeTextElement{");
-        sb.append("contentText='").append(contentText).append('\'');
-        sb.append(", childs=").append(childs);
-        sb.append('}');
-        return sb.toString();
+        return "CompositeTextElement{" +
+                "contentText='" + contentText + '\'' +
+                ", childs=" + childs +
+                "} " + super.toString();
     }
 
 }

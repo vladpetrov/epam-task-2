@@ -30,6 +30,18 @@ public final class RegexTools {
         return resultList;
     }
 
+    public static String getFirstMatch(String regex, String text) {
+        if (matches(regex, text)) {
+            pattern = Pattern.compile(regex, Pattern.MULTILINE);
+            matcher = pattern.matcher(text);
+
+            matcher.find();
+            resultString = matcher.group();
+
+        }
+        return resultString;
+    }
+    
     public static boolean matches(String regex, String text) {
         pattern = Pattern.compile(regex, Pattern.MULTILINE);        //Multiline regex matching
         matcher = pattern.matcher(text);
@@ -37,12 +49,23 @@ public final class RegexTools {
         return matcher.find();
     }
 
-    public static String removeRegexMatch(String regex, String text) {
+    public static String removeRegexMatches(String regex, String text) {
         if (matches(regex, text)) {
             pattern = Pattern.compile(regex, Pattern.MULTILINE);
             matcher = pattern.matcher(text);
 
             resultString = matcher.replaceAll("");
+
+        }
+        return resultString;
+    }
+
+    public static String removeFirstRegexMatch(String regex, String text) {
+        if (matches(regex, text)) {
+            pattern = Pattern.compile(regex, Pattern.MULTILINE);
+            matcher = pattern.matcher(text);
+
+            resultString = matcher.replaceFirst("");
 
         }
         return resultString;

@@ -21,24 +21,19 @@ public class WordParser extends Parser {
         TextComponent parent;
         TextComponent component = null;
         List<String> matches;
+        String currText;
         String textForNextParser;
-        if (RegexTools.matches(RegexConstants.THEME_REGEX, text)) {
+        int zeroIndex = 0;
+
+        if (RegexTools.matches(RegexConstants.PARAGRAPH_REGEX, text)) {
             parent = parentComponent;
-            matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
-            for (String theme : matches) {
-                component = new CompositeTextElement(theme);
-                parent.addTextComponent(component);
-            }
-            textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
+            matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
+            currText = text;
 
-//            for(TextComponent childComponent: parent.getChilds()) {
-//                this.getNextParser().parse(textForNextParser, childComponent);
-//            }
-            this.getNextParser().parse(textForNextParser, component);
+
         } else {
-            this.getNextParser().parse(text, this.getTextObject().getRoot());
+            this.getNextParser().parse(text, parentComponent);
         }
-
     }
 
     public static WordParser getInstance() {

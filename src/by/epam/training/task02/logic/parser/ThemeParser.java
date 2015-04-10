@@ -22,6 +22,7 @@ public class ThemeParser extends Parser {
         TextComponent component = null;
         List<String> matches;
         String textForNextParser;
+
         if (RegexTools.matches(RegexConstants.THEME_REGEX, text)) {
             parent = parentComponent;
             matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
@@ -29,14 +30,11 @@ public class ThemeParser extends Parser {
                 component = new CompositeTextElement(theme);
                 parent.addTextComponent(component);
             }
-            textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
+            textForNextParser = RegexTools.removeFirstRegexMatch(RegexConstants.THEME_REGEX, text);
 
-//            for(TextComponent childComponent: parent.getChilds()) {
-//                this.getNextParser().parse(textForNextParser, childComponent);
-//            }
             this.getNextParser().parse(textForNextParser, component);
         } else {
-            this.getNextParser().parse(text, this.getTextObject().getRoot());
+            this.getNextParser().parse(text, parentComponent);
         }
     }
 

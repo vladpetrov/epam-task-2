@@ -21,23 +21,20 @@ public class ParagraphParser extends Parser {
         TextComponent parent;
         TextComponent component = null;
         List<String> matches;
+        String currText;
         String textForNextParser;
-        if (RegexTools.matches(RegexConstants.THEME_REGEX, text)) {
-            parent = parentComponent;
-            matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
-            for (String theme : matches) {
-                component = new CompositeTextElement(theme);
-                parent.addTextComponent(component);
-            }
-            textForNextParser = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, text);
+        int zeroIndex = 0;
 
-//            for(TextComponent childComponent: parent.getChilds()) {
-//                this.getNextParser().parse(textForNextParser, childComponent);
-//            }
-            this.getNextParser().parse(textForNextParser, component);
+        if (RegexTools.matches(RegexConstants.PARAGRAPH_REGEX, text)) {
+            parent = parentComponent;
+            matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
+            currText = text;
+
+
         } else {
-            this.getNextParser().parse(text, this.getTextObject().getRoot());
+            this.getNextParser().parse(text, parentComponent);
         }
+
 
     }
 
