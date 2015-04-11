@@ -1,5 +1,6 @@
 package by.epam.training.task02.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,15 +8,28 @@ import java.util.List;
  */
 public abstract class TextComponent {
 
-    public abstract void setContentText(String contentText);
+    public TextComponent() {
+    }
 
-    public abstract String getContentText();
+    public void setContentText(String contentText) {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract void addTextComponent(TextComponent component);
+    public String getContentText() {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract TextComponent getTextComponent(int index);
+    public void addTextComponent(TextComponent component) {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract List<TextComponent> getChilds();
+    public TextComponent getTextComponent(int index) {
+        throw new UnsupportedOperationException();
+    }
+
+    public List<TextComponent> getChildren() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public boolean equals(Object obj) {

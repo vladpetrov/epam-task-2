@@ -2,6 +2,7 @@ package by.epam.training.task02.logic.parser;
 
 import by.epam.training.task02.entity.CompositeTextElement;
 import by.epam.training.task02.entity.TextComponent;
+import by.epam.training.task02.entity.TextObject;
 import by.epam.training.task02.util.regexutil.RegexConstants;
 import by.epam.training.task02.util.regexutil.RegexTools;
 
@@ -11,9 +12,38 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class ThemeParser extends Parser {
-    private static final ThemeParser instance = new ThemeParser();
+    private TextObject textObject;
 
-    private ThemeParser() {
+    public ThemeParser() {
+        super();
+    }
+
+    public ThemeParser(Parser nextParser) {
+        super();
+        setNextParser(nextParser);
+    }
+
+    public TextObject getTextObject() {
+        return textObject;
+    }
+
+    public void setTextObject(TextObject textObject) {
+        this.textObject = textObject;
+    }
+
+    @Override
+    public void setNextParser(Parser nextParser) {
+        this.nextParser = nextParser;
+    }
+
+    @Override
+    public Parser getNextParser() {
+        return nextParser;
+    }
+
+    @Override
+    public void parse(String text) {
+        parse(text, this.getTextObject().getRoot());
     }
 
     @Override
@@ -46,10 +76,6 @@ public class ThemeParser extends Parser {
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
-    }
-
-    public static ThemeParser getInstance() {
-        return instance;
     }
 
 }

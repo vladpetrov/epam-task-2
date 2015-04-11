@@ -7,9 +7,8 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class CompositeTextElement extends TextComponent {
-
-    private String contentText;
-    private List<TextComponent> childs = new ArrayList<>();
+    private List<TextComponent> children = new ArrayList<>();
+    private String contentText = "";
 
     public CompositeTextElement() {
     }
@@ -30,17 +29,17 @@ public class CompositeTextElement extends TextComponent {
 
     @Override
     public void addTextComponent(TextComponent component) {
-        childs.add(component);
+        children.add(component);
     }
 
     @Override
     public TextComponent getTextComponent(int index) {
-        return childs.get(index);
+        return children.get(index);
     }
 
     @Override
-    public List<TextComponent> getChilds() {
-        return childs;
+    public List<TextComponent> getChildren() {
+        return children;
     }
 
     @Override
@@ -52,14 +51,14 @@ public class CompositeTextElement extends TextComponent {
         CompositeTextElement that = (CompositeTextElement) o;
 
         if (contentText != null ? !contentText.equals(that.contentText) : that.contentText != null) return false;
-        return !(childs != null ? !childs.equals(that.childs) : that.childs != null);
+        return !(children != null ? !children.equals(that.children) : that.children != null);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (contentText != null ? contentText.hashCode() : 0);
-        result = 31 * result + (childs != null ? childs.hashCode() : 0);
+        result = 31 * result + (children != null ? children.hashCode() : 0);
         return result;
     }
 
@@ -67,7 +66,7 @@ public class CompositeTextElement extends TextComponent {
     public String toString() {
         return "CompositeTextElement{" +
                 "contentText='" + contentText + '\'' +
-                ", childs=" + childs +
+                ", children=" + children +
                 "} " + super.toString();
     }
 

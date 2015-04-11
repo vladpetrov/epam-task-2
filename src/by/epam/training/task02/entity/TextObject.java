@@ -4,11 +4,9 @@ package by.epam.training.task02.entity;
  * Created by Higgs on 08.04.2015.
  */
 public class TextObject {
-
-    private TextComponent root;
+    private TextComponent root = new CompositeTextElement();
 
     public TextObject() {
-        root = new CompositeTextElement();
     }
 
     public TextComponent getRoot() {

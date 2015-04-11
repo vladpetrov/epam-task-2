@@ -11,9 +11,24 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class SubThemeParser extends Parser {
-    private static final SubThemeParser instance = new SubThemeParser();
 
-    private SubThemeParser() {
+    public SubThemeParser() {
+        super();
+    }
+
+    public SubThemeParser(Parser nextParser) {
+        super();
+        setNextParser(nextParser);
+    }
+
+    @Override
+    public void setNextParser(Parser nextParser) {
+        this.nextParser = nextParser;
+    }
+
+    @Override
+    public Parser getNextParser() {
+        return nextParser;
     }
 
     @Override
@@ -38,7 +53,6 @@ public class SubThemeParser extends Parser {
                 this.getNextParser().parse(textForNextParser, component);
                 component = new CompositeTextElement(match);
                 parentComponent.addTextComponent(component);
-
                 currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
             if (currText.length() != 0) {
@@ -47,10 +61,6 @@ public class SubThemeParser extends Parser {
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
-    }
-
-    public static SubThemeParser getInstance() {
-        return instance;
     }
 
 }

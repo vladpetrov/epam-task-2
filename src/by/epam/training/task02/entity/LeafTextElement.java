@@ -6,14 +6,13 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class LeafTextElement extends TextComponent {
-
-    private String contentText;
+    private String contentText = "";
 
     public LeafTextElement() {
     }
 
     public LeafTextElement(String contentText) {
-        this.contentText = contentText;
+        setContentText(contentText);
     }
 
     @Override
@@ -24,20 +23,6 @@ public class LeafTextElement extends TextComponent {
     @Override
     public String getContentText() {
         return contentText;
-    }
-
-    @Override
-    public void addTextComponent(TextComponent component) {
-    }
-
-    @Override
-    public TextComponent getTextComponent(int index) {
-        return null;
-    }
-
-    @Override
-    public List<TextComponent> getChilds() {
-        return null;
     }
 
     @Override

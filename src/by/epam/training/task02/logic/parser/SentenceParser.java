@@ -11,9 +11,24 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class SentenceParser extends Parser {
-    private static final SentenceParser instance = new SentenceParser();
 
-    private SentenceParser() {
+    public SentenceParser() {
+        super();
+    }
+
+    public SentenceParser(Parser nextParser) {
+        super();
+        setNextParser(nextParser);
+    }
+
+    @Override
+    public void setNextParser(Parser nextParser) {
+        this.nextParser = nextParser;
+    }
+
+    @Override
+    public Parser getNextParser() {
+        return nextParser;
     }
 
     @Override
@@ -31,10 +46,6 @@ public class SentenceParser extends Parser {
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
-    }
-
-    public static SentenceParser getInstance() {
-        return instance;
     }
 
 }

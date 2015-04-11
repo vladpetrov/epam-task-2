@@ -1,39 +1,32 @@
 package by.epam.training.task02.run;
 
-import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
 import by.epam.training.task02.logic.parser.*;
-import by.epam.training.task02.util.regexutil.RegexConstants;
-import by.epam.training.task02.util.regexutil.RegexTools;
 import by.epam.training.task02.util.textfileutil.TextFileAccessor;
-
-import java.util.List;
 
 /**
  * Created by higgs on 01.04.15.
  */
 public class Runner {
-
-    private Parser themeParser;
-
-    public Runner() {
-        this.themeParser = ThemeParser.getInstance();
-        Parser subThemeParser = SubThemeParser.getInstance();
-        Parser paragraphParser = ParagraphParser.getInstance();
-        CodeExampleParser codeParser = CodeExampleParser.getInstance();
-        Parser sentenceParser = SentenceParser.getInstance();
-        Parser wordParser = WordParser.getInstance();
-
-        themeParser.setNextParser(subThemeParser);
-        subThemeParser.setNextParser(paragraphParser);
-        paragraphParser.setNextParser(sentenceParser);
-//        paragraphParser.setCodeParser(codeParser);
-        sentenceParser.setNextParser(wordParser);
-    }
-
     public static void main(String[] args) {
 
+        TextObject textObject = new TextObject();
+
+        Parser wordParser = new WordParser();
+        Parser codeParser = new CodeParser();
+        Parser sentenceParser = new SentenceParser(wordParser);
+        Parser paragraphParser = new ParagraphParser(sentenceParser);
+        Parser subThemeParser = new SubThemeParser(paragraphParser);
+        Parser themeParser = new ThemeParser(subThemeParser);
+
+        paragraphParser.setCodeParser(codeParser);
+
+        themeParser.setTextObject(textObject);
+
         String text = TextFileAccessor.readFromFile("src/text.txt");
+
+        themeParser.parse(text);
+
 //        List<String> matches;
 //
 //        matches = RegexTools.findByRegex(RegexConstants.PARAGRAPH_REGEX, text);
@@ -46,14 +39,14 @@ public class Runner {
 //            System.out.println(str);
 //        }
         /////////////////////////////////////////////////////////
-        TextObject textObject = new TextObject();
-        Runner runner = new Runner();
-        runner.themeParser.setTextObject(textObject);
-        runner.themeParser.parse(text);
-
-        for (TextComponent component : textObject.getRoot().getChilds()) {
-            System.out.println(component);
-        }
+//        TextObject textObject = new TextObject();
+//        Runner runner = new Runner();
+//        runner.themeParser.setTextObject(textObject);
+//        runner.themeParser.parse(text);
+//
+//        for (TextComponent component : textObject.getRoot().getChildren()) {
+//            System.out.println(component);
+//        }
 
 
         ///////////////////////////////////////////////////////////////////////

@@ -11,19 +11,31 @@ import java.util.List;
  * Created by Higgs on 08.04.2015.
  */
 public class ParagraphParser extends Parser {
-    private static final ParagraphParser instance = new ParagraphParser();
 
-    private Parser codeParser;
+    public ParagraphParser() {
+    }
 
-    private ParagraphParser() {
+    public ParagraphParser(Parser nextParser) {
+        this.nextParser = nextParser;
+    }
+
+    @Override
+    public void setNextParser(Parser nextParser) {
+        this.nextParser = nextParser;
+    }
+
+    @Override
+    public Parser getNextParser() {
+        return nextParser;
+    }
+
+    @Override
+    public void setCodeParser(Parser codeParser) {
+        this.codeParser = codeParser;
     }
 
     public Parser getCodeParser() {
-        return codeParser;
-    }
-
-    public void setCodeParser(Parser codeParser) {
-        this.codeParser = codeParser;
+        return this.codeParser;
     }
 
     @Override
@@ -50,7 +62,6 @@ public class ParagraphParser extends Parser {
                 component = new CompositeTextElement(match);
                 parentComponent.addTextComponent(component);
                 this.getNextParser().parse(match, component);
-
                 currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
             if (currText.length() != 0) {
@@ -60,10 +71,6 @@ public class ParagraphParser extends Parser {
             this.getNextParser().parse(text, parentComponent);
         }
 
-    }
-
-    public static ParagraphParser getInstance() {
-        return instance;
     }
 
 }

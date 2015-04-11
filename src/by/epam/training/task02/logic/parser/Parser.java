@@ -8,33 +8,42 @@ import java.util.regex.Pattern;
 /**
  * Created by Higgs on 08.04.2015.
  */
-public class Parser {
-
-    protected TextObject textObject;
+public abstract class Parser {
     protected Parser nextParser;
+    protected Parser codeParser;
+
+    public Parser() {
+
+    }
 
     public TextObject getTextObject() {
-        return textObject;
+        throw new UnsupportedOperationException();
     }
 
     public void setTextObject(TextObject textObject) {
-        this.textObject = textObject;
+        throw new UnsupportedOperationException();
     }
 
     public void setNextParser(Parser nextParser) {
-        this.nextParser = nextParser;
+        throw new UnsupportedOperationException();
     }
 
     public Parser getNextParser() {
-        return nextParser;
+        throw new UnsupportedOperationException();
+    }
+
+    public Parser getCodeParser() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setCodeParser(Parser codeParser) {
+        throw new UnsupportedOperationException();
     }
 
     public void parse(String text) {
-        parse(text, this.getTextObject().getRoot());
+        throw new UnsupportedOperationException();
     }
 
-    public void parse(String text, TextComponent parentComponent) {
-
-    }
+    public abstract void parse(String text, TextComponent parentComponent);
 
 }
