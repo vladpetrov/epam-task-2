@@ -1,6 +1,5 @@
 package by.epam.training.task02.run;
 
-import by.epam.training.task02.entity.CompositeTextElement;
 import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
 import by.epam.training.task02.logic.parser.*;
@@ -8,7 +7,6 @@ import by.epam.training.task02.util.regexutil.RegexConstants;
 import by.epam.training.task02.util.regexutil.RegexTools;
 import by.epam.training.task02.util.textfileutil.TextFileAccessor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,20 +20,32 @@ public class Runner {
         this.themeParser = ThemeParser.getInstance();
         Parser subThemeParser = SubThemeParser.getInstance();
         Parser paragraphParser = ParagraphParser.getInstance();
-        Parser codeExampleParser = CodeExampleParser.getInstance();
+        CodeExampleParser codeParser = CodeExampleParser.getInstance();
         Parser sentenceParser = SentenceParser.getInstance();
         Parser wordParser = WordParser.getInstance();
 
         themeParser.setNextParser(subThemeParser);
-        subThemeParser.setNextParser(codeExampleParser);
-        codeExampleParser.setNextParser(paragraphParser);
+        subThemeParser.setNextParser(paragraphParser);
         paragraphParser.setNextParser(sentenceParser);
+//        paragraphParser.setCodeParser(codeParser);
         sentenceParser.setNextParser(wordParser);
     }
 
     public static void main(String[] args) {
 
         String text = TextFileAccessor.readFromFile("src/text.txt");
+//        List<String> matches;
+//
+//        matches = RegexTools.findByRegex(RegexConstants.PARAGRAPH_REGEX, text);
+//
+//        List<String> words;
+//
+//        words = RegexTools.findByRegex(RegexConstants.WORD_REGEX, matches.get(7));
+//
+//        for(String str : words) {
+//            System.out.println(str);
+//        }
+        /////////////////////////////////////////////////////////
         TextObject textObject = new TextObject();
         Runner runner = new Runner();
         runner.themeParser.setTextObject(textObject);
@@ -45,6 +55,33 @@ public class Runner {
             System.out.println(component);
         }
 
+
+        ///////////////////////////////////////////////////////////////////////
+
+//        TextComponent component = null;
+//        TextComponent leafComponent = null;
+//        List<String> matches;
+//        String currText;
+//        String textForNextParser;
+//        int zeroIndex = 0;
+//
+//        matches = RegexTools.findByRegex(RegexConstants.PARAGRAPH_REGEX, text);
+//        currText = text;
+//        for (String match : matches) {
+//            if (currText.indexOf(match) == 0) {
+//                currText = RegexTools.removeFirstRegexMatch(RegexConstants.PARAGRAPH_REGEX, currText);
+//
+//
+////                String nextMatch = RegexTools.getFirstMatch(RegexConstants.PARAGRAPH_REGEX, currText);
+////                textForNextParser = currText.substring(zeroIndex, currText.indexOf(nextMatch));
+//            } else {
+//
+//
+//
+//
+//            }
+//
+//        }
 //////////////////////////////////////////////////////////////////////////////////////////
 //    	List<String> matches;
 //
@@ -111,9 +148,8 @@ public class Runner {
 
 
         ///////////////////////////////////////////////////////////////////////
-        
-        
-        
+
+
 //        Runner runner = new Runner();
 //
 //        TextObject textObject = new TextObject();

@@ -18,21 +18,31 @@ public class ThemeParser extends Parser {
 
     @Override
     public void parse(String text, TextComponent parentComponent) {
-        TextComponent parent;
         TextComponent component = null;
         List<String> matches;
         String textForNextParser;
+        String currText;
+        int zeroIndex = 0;
 
         if (RegexTools.matches(RegexConstants.THEME_REGEX, text)) {
-            parent = parentComponent;
             matches = RegexTools.findByRegex(RegexConstants.THEME_REGEX, text);
-            for (String theme : matches) {
-                component = new CompositeTextElement(theme);
-                parent.addTextComponent(component);
+            currText = text;
+            for (String match : matches) {
+                if (currText.indexOf(match) == 0) {
+                    currText = RegexTools.removeFirstRegexMatch(RegexConstants.THEME_REGEX, currText);
+                    component = new CompositeTextElement(match);
+                    parentComponent.addTextComponent(component);
+                    continue;
+                }
+                textForNextParser = currText.substring(zeroIndex, currText.indexOf(match));
+                this.getNextParser().parse(textForNextParser, component);
+                component = new CompositeTextElement(match);
+                parentComponent.addTextComponent(component);
+                currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
-            textForNextParser = RegexTools.removeFirstRegexMatch(RegexConstants.THEME_REGEX, text);
-
-            this.getNextParser().parse(textForNextParser, component);
+            if (currText.length() != 0) {
+                this.getNextParser().parse(currText, component);
+            }
         } else {
             this.getNextParser().parse(text, parentComponent);
         }

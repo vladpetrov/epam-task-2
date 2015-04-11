@@ -18,19 +18,16 @@ public class SentenceParser extends Parser {
 
     @Override
     public void parse(String text, TextComponent parentComponent) {
-        TextComponent parent;
-        TextComponent component = null;
+        TextComponent component;
         List<String> matches;
-        String currText;
-        String textForNextParser;
-        int zeroIndex = 0;
 
-        if (RegexTools.matches(RegexConstants.PARAGRAPH_REGEX, text)) {
-            parent = parentComponent;
-            matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
-            currText = text;
-
-
+        if (RegexTools.matches(RegexConstants.SENTENCE_REGEX, text)) {
+            matches = RegexTools.findByRegex(RegexConstants.SENTENCE_REGEX, text);
+            for (String match : matches) {
+                component = new CompositeTextElement(match);
+                parentComponent.addTextComponent(component);
+                this.getNextParser().parse(match, component);
+            }
         } else {
             this.getNextParser().parse(text, parentComponent);
         }

@@ -8,11 +8,10 @@ import java.util.regex.Pattern;
 /**
  * Created by Higgs on 08.04.2015.
  */
-public abstract class Parser {
+public class Parser {
 
     protected TextObject textObject;
     protected Parser nextParser;
-
 
     public TextObject getTextObject() {
         return textObject;
@@ -34,6 +33,8 @@ public abstract class Parser {
         parse(text, this.getTextObject().getRoot());
     }
 
-    public abstract void parse(String text, TextComponent parentComponent);
+    public void parse(String text, TextComponent parentComponent) {
+
+    }
 
 }

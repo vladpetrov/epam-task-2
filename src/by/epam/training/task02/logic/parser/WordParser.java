@@ -1,6 +1,7 @@
 package by.epam.training.task02.logic.parser;
 
 import by.epam.training.task02.entity.CompositeTextElement;
+import by.epam.training.task02.entity.LeafTextElement;
 import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.util.regexutil.RegexConstants;
 import by.epam.training.task02.util.regexutil.RegexTools;
@@ -18,21 +19,18 @@ public class WordParser extends Parser {
 
     @Override
     public void parse(String text, TextComponent parentComponent) {
-        TextComponent parent;
-        TextComponent component = null;
+        TextComponent component;
         List<String> matches;
-        String currText;
-        String textForNextParser;
-        int zeroIndex = 0;
 
-        if (RegexTools.matches(RegexConstants.PARAGRAPH_REGEX, text)) {
-            parent = parentComponent;
-            matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
-            currText = text;
-
-
+        if (RegexTools.matches(RegexConstants.WORD_REGEX, text)) {
+            matches = RegexTools.findByRegex(RegexConstants.WORD_REGEX, text);
+            for (String match : matches) {
+                component = new LeafTextElement(match);
+                parentComponent.addTextComponent(component);
+            }
+            System.out.println("Parsers chain end!");
         } else {
-            this.getNextParser().parse(text, parentComponent);
+            System.out.println("Parsers chain end!");
         }
     }
 

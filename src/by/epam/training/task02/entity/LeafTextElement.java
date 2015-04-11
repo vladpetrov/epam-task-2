@@ -61,7 +61,7 @@ public class LeafTextElement extends TextComponent {
     @Override
     public String toString() {
         return "LeafTextElement{" +
-                "contentText='" + contentText + '\'' +
+                "contentText=\"" + contentText + "\"" +
                 "} " + super.toString();
     }
 }

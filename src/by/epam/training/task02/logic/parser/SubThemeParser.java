@@ -18,7 +18,6 @@ public class SubThemeParser extends Parser {
 
     @Override
     public void parse(String text, TextComponent parentComponent) {
-        TextComponent parent;
         TextComponent component = null;
         List<String> matches;
         String currText;
@@ -26,26 +25,25 @@ public class SubThemeParser extends Parser {
         int zeroIndex = 0;
 
         if (RegexTools.matches(RegexConstants.SUB_THEME_REGEX, text)) {
-            parent = parentComponent;
             matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
             currText = text;
             for (String match : matches) {
                 if (currText.indexOf(match) == 0) {
                     currText = RegexTools.removeFirstRegexMatch(RegexConstants.SUB_THEME_REGEX, currText);
                     component = new CompositeTextElement(match);
-                    component.setContentText(match);
-                    parent.addTextComponent(component);
+                    parentComponent.addTextComponent(component);
                     continue;
                 }
                 textForNextParser = currText.substring(zeroIndex, currText.indexOf(match));
                 this.getNextParser().parse(textForNextParser, component);
                 component = new CompositeTextElement(match);
-                component.setContentText(match);
-                parent.addTextComponent(component);
+                parentComponent.addTextComponent(component);
 
                 currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
-            this.getNextParser().parse(currText, component);
+            if (currText.length() != 0) {
+                this.getNextParser().parse(text, component);
+            }
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
