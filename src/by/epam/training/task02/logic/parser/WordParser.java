@@ -13,7 +13,6 @@ import java.util.List;
 public class WordParser extends Parser {
 
     public WordParser() {
-        super();
     }
 
     @Override
@@ -27,9 +26,8 @@ public class WordParser extends Parser {
                 component = new LeafTextElement(match);
                 parentComponent.addTextComponent(component);
             }
-            System.out.println("Parsers chain end!");
         } else {
-            System.out.println("No words to parse!");
+            System.out.println("no words to parse");
         }
     }
 

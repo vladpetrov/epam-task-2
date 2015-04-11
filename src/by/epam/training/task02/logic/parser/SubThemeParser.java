@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class SubThemeParser extends Parser {
 
+    private Parser nextParser;
+
     public SubThemeParser() {
-        super();
     }
 
     public SubThemeParser(Parser nextParser) {
-        super();
         setNextParser(nextParser);
     }
 
@@ -56,11 +56,12 @@ public class SubThemeParser extends Parser {
                 currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
             }
             if (currText.length() != 0) {
-                this.getNextParser().parse(text, component);
+                this.getNextParser().parse(currText, component);
             }
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
+
     }
 
 }

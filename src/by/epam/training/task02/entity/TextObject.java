@@ -21,10 +21,9 @@ public class TextObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         TextObject that = (TextObject) o;
-
-        return !(root != null ? !root.equals(that.root) : that.root != null);
+        if (root != null ? !root.equals(that.root) : that.root != null) return false;
+        return true;
     }
 
     @Override

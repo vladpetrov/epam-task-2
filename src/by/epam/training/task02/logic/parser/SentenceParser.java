@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class SentenceParser extends Parser {
 
+    private Parser nextParser;
+
     public SentenceParser() {
-        super();
     }
 
     public SentenceParser(Parser nextParser) {
-        super();
         setNextParser(nextParser);
     }
 
@@ -39,7 +39,7 @@ public class SentenceParser extends Parser {
         if (RegexTools.matches(RegexConstants.SENTENCE_REGEX, text)) {
             matches = RegexTools.findByRegex(RegexConstants.SENTENCE_REGEX, text);
             for (String match : matches) {
-                component = new CompositeTextElement(match);
+                component = new CompositeTextElement();
                 parentComponent.addTextComponent(component);
                 this.getNextParser().parse(match, component);
             }

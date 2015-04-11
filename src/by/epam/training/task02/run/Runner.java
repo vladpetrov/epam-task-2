@@ -1,5 +1,7 @@
 package by.epam.training.task02.run;
 
+import by.epam.training.task02.entity.LeafTextElement;
+import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
 import by.epam.training.task02.logic.parser.*;
 import by.epam.training.task02.util.textfileutil.TextFileAccessor;
@@ -10,167 +12,25 @@ import by.epam.training.task02.util.textfileutil.TextFileAccessor;
 public class Runner {
     public static void main(String[] args) {
 
-        TextObject textObject = new TextObject();
-
-        Parser wordParser = new WordParser();
         Parser codeParser = new CodeParser();
+        Parser wordParser = new WordParser();
         Parser sentenceParser = new SentenceParser(wordParser);
         Parser paragraphParser = new ParagraphParser(sentenceParser);
         Parser subThemeParser = new SubThemeParser(paragraphParser);
         Parser themeParser = new ThemeParser(subThemeParser);
 
-        paragraphParser.setCodeParser(codeParser);
-
+        TextObject textObject = new TextObject();
         themeParser.setTextObject(textObject);
+
+        paragraphParser.setCodeParser(codeParser);
 
         String text = TextFileAccessor.readFromFile("src/text.txt");
 
         themeParser.parse(text);
 
-//        List<String> matches;
-//
-//        matches = RegexTools.findByRegex(RegexConstants.PARAGRAPH_REGEX, text);
-//
-//        List<String> words;
-//
-//        words = RegexTools.findByRegex(RegexConstants.WORD_REGEX, matches.get(7));
-//
-//        for(String str : words) {
-//            System.out.println(str);
-//        }
-        /////////////////////////////////////////////////////////
-//        TextObject textObject = new TextObject();
-//        Runner runner = new Runner();
-//        runner.themeParser.setTextObject(textObject);
-//        runner.themeParser.parse(text);
-//
-//        for (TextComponent component : textObject.getRoot().getChildren()) {
-//            System.out.println(component);
-//        }
+        String textFromObject = textObject.getRoot().print();
 
-
-        ///////////////////////////////////////////////////////////////////////
-
-//        TextComponent component = null;
-//        TextComponent leafComponent = null;
-//        List<String> matches;
-//        String currText;
-//        String textForNextParser;
-//        int zeroIndex = 0;
-//
-//        matches = RegexTools.findByRegex(RegexConstants.PARAGRAPH_REGEX, text);
-//        currText = text;
-//        for (String match : matches) {
-//            if (currText.indexOf(match) == 0) {
-//                currText = RegexTools.removeFirstRegexMatch(RegexConstants.PARAGRAPH_REGEX, currText);
-//
-//
-////                String nextMatch = RegexTools.getFirstMatch(RegexConstants.PARAGRAPH_REGEX, currText);
-////                textForNextParser = currText.substring(zeroIndex, currText.indexOf(nextMatch));
-//            } else {
-//
-//
-//
-//
-//            }
-//
-//        }
-//////////////////////////////////////////////////////////////////////////////////////////
-//    	List<String> matches;
-//
-//
-//        String result;
-//
-//        matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
-//
-//        result = text.substring(text.indexOf(matches.get(0)) + matches.get(0).length(), text.indexOf(matches.get(1)));
-//
-//        System.out.println(result);
-//        System.out.println();
-//        System.out.println();
-//
-//        text = text.substring(text.indexOf(matches.get(1)) + matches.get(1).length(), text.length());
-//
-//        System.out.println(text);
-
-
-        ////////////////////////////////////////////////////////////////////////////////
-
-//        TextObject textObject = new TextObject();
-//
-//        TextComponent parent;
-//        TextComponent component = null;
-//        List<String> matches;
-//        String currText;
-//        String textForNextParser;
-//        int zeroIndex = 0;
-//
-//        text = RegexTools.removeFirstRegexMatch(RegexConstants.THEME_REGEX, text);
-//
-//        if (RegexTools.matches(RegexConstants.SUB_THEME_REGEX, text)) {
-//            parent = textObject.getRoot();
-//            matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, text);
-//            currText = text;
-//
-//            for (String match : matches) {
-//                if (currText.indexOf(match) == 0) {
-//                	component = new CompositeTextElement(match);
-//                	parent.addTextComponent(component);
-//                	currText = RegexTools.removeFirstRegexMatch(RegexConstants.SUB_THEME_REGEX, currText);
-//                    System.out.println("index zero start\n\n");
-//                    System.out.println(currText + "\n\n");
-//                    System.out.println("index zero end\n\n");
-//                    continue;
-//                }
-//                textForNextParser = currText.substring(zeroIndex, currText.indexOf(match));
-//                System.out.println(textForNextParser);
-//                System.out.println();
-//                System.out.println();
-////                this.getNextParser().parse(textForNextParser, component);
-//                component = new CompositeTextElement(match);
-//                parent.addTextComponent(component);
-//                currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
-//
-//            }
-//
-////          this.getNextParser().parse(textForNextParser, component);
-//            //send curr text to next parser
-//            System.out.println(currText);
-//
-//        }
-
-
-        ///////////////////////////////////////////////////////////////////////
-
-
-//        Runner runner = new Runner();
-//
-//        TextObject textObject = new TextObject();
-//
-//        runner.themeParser.setTextObject(textObject);
-//
-//        runner.themeParser.parse(str);
-
-
-//        List<String> matches = new ArrayList<>();
-//
-//        str = RegexTools.removeRegexMatch(RegexConstants.THEME_REGEX, str);
-//
-//        matches = RegexTools.findByRegex(RegexConstants.SUB_THEME_REGEX, str);
-
-
-//        result = str.substring(0, str.indexOf(matches.get(1)));
-
-//        System.out.println(result);
-
-
-//////////////////////////////////////////////////////////////////////
-
-        //create chain and give it textObject as parameter
-
-
-//        TextFileAccessor.writeToFile("src/outp.txt", subNumber);
-
+        TextFileAccessor.writeToFile("src/outp.txt", textFromObject);
 
     }
 

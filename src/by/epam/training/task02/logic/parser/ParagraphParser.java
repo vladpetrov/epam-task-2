@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class ParagraphParser extends Parser {
 
+    private Parser nextParser;
+    private Parser codeParser;
+
     public ParagraphParser() {
     }
 
@@ -30,12 +33,12 @@ public class ParagraphParser extends Parser {
     }
 
     @Override
-    public void setCodeParser(Parser codeParser) {
-        this.codeParser = codeParser;
+    public Parser getCodeParser() {
+        return codeParser;
     }
 
-    public Parser getCodeParser() {
-        return this.codeParser;
+    public void setCodeParser(Parser codeParser) {
+        this.codeParser = codeParser;
     }
 
     @Override
@@ -52,14 +55,15 @@ public class ParagraphParser extends Parser {
             for (String match : matches) {
                 if (currText.indexOf(match) == 0) {
                     currText = RegexTools.removeFirstRegexMatch(RegexConstants.PARAGRAPH_REGEX, currText);
-                    component = new CompositeTextElement(match);
+                    component = new CompositeTextElement();
                     parentComponent.addTextComponent(component);
                     this.getNextParser().parse(match, component);
                     continue;
                 }
                 textForNextParser = currText.substring(zeroIndex, currText.indexOf(match));
+
                 this.getCodeParser().parse(textForNextParser, component);
-                component = new CompositeTextElement(match);
+                component = new CompositeTextElement();
                 parentComponent.addTextComponent(component);
                 this.getNextParser().parse(match, component);
                 currText = currText.substring((currText.indexOf(match) + match.length()), currText.length());
@@ -70,7 +74,6 @@ public class ParagraphParser extends Parser {
         } else {
             this.getNextParser().parse(text, parentComponent);
         }
-
     }
 
 }

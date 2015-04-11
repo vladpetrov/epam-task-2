@@ -1,5 +1,6 @@
 package by.epam.training.task02.logic.parser;
 
+import by.epam.training.task02.entity.CompositeTextElement;
 import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
 
@@ -9,18 +10,12 @@ import java.util.regex.Pattern;
  * Created by Higgs on 08.04.2015.
  */
 public abstract class Parser {
-    protected Parser nextParser;
-    protected Parser codeParser;
 
-    public Parser() {
-
-    }
-
-    public TextObject getTextObject() {
+    public void setTextObject(TextObject textObject) {
         throw new UnsupportedOperationException();
     }
 
-    public void setTextObject(TextObject textObject) {
+    public TextObject getTextObject() {
         throw new UnsupportedOperationException();
     }
 
@@ -32,11 +27,11 @@ public abstract class Parser {
         throw new UnsupportedOperationException();
     }
 
-    public Parser getCodeParser() {
+    public void setCodeParser(Parser codeParser) {
         throw new UnsupportedOperationException();
     }
 
-    public void setCodeParser(Parser codeParser) {
+    public Parser getCodeParser() {
         throw new UnsupportedOperationException();
     }
 
@@ -44,6 +39,8 @@ public abstract class Parser {
         throw new UnsupportedOperationException();
     }
 
-    public abstract void parse(String text, TextComponent parentComponent);
+    public void parse(String text, TextComponent parentComponent) {
+        throw new UnsupportedOperationException();
+    }
 
 }

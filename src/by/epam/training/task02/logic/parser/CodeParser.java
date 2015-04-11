@@ -9,13 +9,11 @@ import by.epam.training.task02.entity.TextComponent;
 public class CodeParser extends Parser {
 
     public CodeParser() {
-        super();
     }
 
     @Override
     public void parse(String text, TextComponent parentComponent) {
-        TextComponent component = new LeafTextElement(text);
-        parentComponent.addTextComponent(component);
+        parentComponent.addTextComponent(new LeafTextElement(text));
     }
 
 }

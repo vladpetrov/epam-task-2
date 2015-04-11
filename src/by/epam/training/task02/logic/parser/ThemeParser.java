@@ -13,20 +13,21 @@ import java.util.List;
  */
 public class ThemeParser extends Parser {
     private TextObject textObject;
+    private Parser nextParser;
 
     public ThemeParser() {
-        super();
     }
 
     public ThemeParser(Parser nextParser) {
-        super();
         setNextParser(nextParser);
     }
-
+    
+    @Override
     public TextObject getTextObject() {
         return textObject;
     }
 
+    @Override
     public void setTextObject(TextObject textObject) {
         this.textObject = textObject;
     }

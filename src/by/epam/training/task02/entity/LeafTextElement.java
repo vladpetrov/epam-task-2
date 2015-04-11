@@ -16,6 +16,11 @@ public class LeafTextElement extends TextComponent {
     }
 
     @Override
+    public String print() {
+        return contentText;
+    }
+
+    @Override
     public void setContentText(String contentText) {
         this.contentText = contentText;
     }
@@ -29,24 +34,21 @@ public class LeafTextElement extends TextComponent {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
         LeafTextElement that = (LeafTextElement) o;
-
-        return !(contentText != null ? !contentText.equals(that.contentText) : that.contentText != null);
+        if (contentText != null ? !contentText.equals(that.contentText) : that.contentText != null) return false;
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (contentText != null ? contentText.hashCode() : 0);
-        return result;
+        return contentText != null ? contentText.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "LeafTextElement{" +
-                "contentText=\"" + contentText + "\"" +
-                "} " + super.toString();
+                "contentText='" + contentText + '\'' +
+                '}';
     }
+
 }

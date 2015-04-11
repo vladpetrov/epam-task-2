@@ -8,52 +8,29 @@ import java.util.List;
  */
 public abstract class TextComponent {
 
-    public TextComponent() {
+    public void setContentText(String contentText) {
+        throw new UnsupportedOperationException("Text component: unsupported operation!");
     }
 
-    public void setContentText(String contentText) {
-        throw new UnsupportedOperationException();
-    }
+    public abstract String print();
 
     public String getContentText() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Text component: unsupported operation!");
     }
 
-    public void addTextComponent(TextComponent component) {
-        throw new UnsupportedOperationException();
+    public void addTextComponent(TextComponent textComponent) {
+        throw new UnsupportedOperationException("Text component: unsupported operation!");
     }
 
-    public TextComponent getTextComponent(int index) {
-        throw new UnsupportedOperationException();
+    public TextComponent getChild(int index) {
+        throw new UnsupportedOperationException("Text component: unsupported operation!");
     }
 
     public List<TextComponent> getChildren() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Text component: unsupported operation!");
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        return true;
-    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + this.getClass().toString().hashCode();
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "TextComponent{}";
-    }
 }
 
 

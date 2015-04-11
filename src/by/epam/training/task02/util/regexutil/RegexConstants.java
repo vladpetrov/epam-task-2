@@ -12,8 +12,8 @@ public final class RegexConstants {
                 THEME_REGEX = "(^(\\d\\.){1}[^\\d\\.].+\\s+)",   //[^\w\s.] - punctuation chars
                 SUB_THEME_REGEX = "(^(\\d\\.){2}.+\\s+)",
                 PARAGRAPH_REGEX = "(^([A-Z]).*[.:!?]+\\s+)",
-                SENTENCE_REGEX = "\\p{Blank}*[A-Z][\\p{Blank}\\w\\p{Punct}&&[^.!?]]*[.:!?]",
-                WORD_REGEX = "((\\b\\w+\\b)|(\\p{Blank})|(\\p{Punct}))",
+                SENTENCE_REGEX = "\\p{Blank}*[A-Z][\\p{Blank}\\w\\p{Punct}&&[^.!?]]*[.:!?][\n]*",
+                WORD_REGEX = "((\\b\\w+\\b)|(\n)|(\\p{Blank})|(\\p{Punct}))",
                 BLANK_REGEX = "\\p{Blank}",                 //space or tab
                 PUNCT_REGEX = "\\p{Punct}";                 //Punctuation: One of !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 
