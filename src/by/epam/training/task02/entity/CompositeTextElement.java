@@ -43,7 +43,7 @@ public class CompositeTextElement extends TextComponent {
         children.add(component);
     }
 
-    public TextComponent getTextComponent(int index) {
+    public TextComponent getChild(int index) {
         return children.get(index);
     }
 

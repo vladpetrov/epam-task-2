@@ -3,6 +3,7 @@ package by.epam.training.task02.logic.parser;
 import by.epam.training.task02.entity.CompositeTextElement;
 import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
+import by.epam.training.task02.logic.LogicException;
 import by.epam.training.task02.util.regexutil.RegexConstants;
 import by.epam.training.task02.util.regexutil.RegexTools;
 
@@ -43,12 +44,12 @@ public class ThemeParser extends Parser {
     }
 
     @Override
-    public void parse(String text) {
+    public void parse(String text) throws LogicException {
         parse(text, this.getTextObject().getRoot());
     }
 
     @Override
-    public void parse(String text, TextComponent parentComponent) {
+    public void parse(String text, TextComponent parentComponent) throws LogicException{
         TextComponent component = null;
         List<String> matches;
         String textForNextParser;

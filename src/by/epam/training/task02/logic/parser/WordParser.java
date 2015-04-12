@@ -2,8 +2,10 @@ package by.epam.training.task02.logic.parser;
 
 import by.epam.training.task02.entity.LeafTextElement;
 import by.epam.training.task02.entity.TextComponent;
+import by.epam.training.task02.logic.LogicException;
 import by.epam.training.task02.util.regexutil.RegexConstants;
 import by.epam.training.task02.util.regexutil.RegexTools;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -12,11 +14,14 @@ import java.util.List;
  */
 public class WordParser extends Parser {
 
+    private static Logger log = Logger.getLogger(WordParser.class);
+
+
     public WordParser() {
     }
 
     @Override
-    public void parse(String text, TextComponent parentComponent) {
+    public void parse(String text, TextComponent parentComponent) throws LogicException {
         TextComponent component;
         List<String> matches;
 
@@ -27,7 +32,7 @@ public class WordParser extends Parser {
                 parentComponent.addTextComponent(component);
             }
         } else {
-            System.out.println("no words to parse");
+            log.info("NO WORDS TO PARSE");
         }
     }
 

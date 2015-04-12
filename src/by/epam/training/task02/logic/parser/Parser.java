@@ -1,10 +1,8 @@
 package by.epam.training.task02.logic.parser;
 
-import by.epam.training.task02.entity.CompositeTextElement;
 import by.epam.training.task02.entity.TextComponent;
 import by.epam.training.task02.entity.TextObject;
-
-import java.util.regex.Pattern;
+import by.epam.training.task02.logic.LogicException;
 
 /**
  * Created by Higgs on 08.04.2015.
@@ -35,12 +33,12 @@ public abstract class Parser {
         throw new UnsupportedOperationException();
     }
 
-    public void parse(String text) {
-        throw new UnsupportedOperationException();
+    public void parse(String text) throws LogicException {
+        throw new LogicException("Unsupported operation for this object");
     }
 
-    public void parse(String text, TextComponent parentComponent) {
-        throw new UnsupportedOperationException();
+    public void parse(String text, TextComponent parentComponent) throws LogicException {
+        throw new LogicException("Unsupported operation for this object");
     }
 
 }
