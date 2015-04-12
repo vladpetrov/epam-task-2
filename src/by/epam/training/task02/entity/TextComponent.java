@@ -1,6 +1,5 @@
 package by.epam.training.task02.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

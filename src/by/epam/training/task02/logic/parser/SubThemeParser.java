@@ -32,6 +32,7 @@ public class SubThemeParser extends Parser {
         return nextParser;
     }
 
+    //
     @Override
     public void parse(String text, TextComponent parentComponent) throws LogicException {
         TextComponent component = null;

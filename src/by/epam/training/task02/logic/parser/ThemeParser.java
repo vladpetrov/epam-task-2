@@ -22,7 +22,7 @@ public class ThemeParser extends Parser {
     public ThemeParser(Parser nextParser) {
         setNextParser(nextParser);
     }
-    
+
     @Override
     public TextObject getTextObject() {
         return textObject;
@@ -49,7 +49,7 @@ public class ThemeParser extends Parser {
     }
 
     @Override
-    public void parse(String text, TextComponent parentComponent) throws LogicException{
+    public void parse(String text, TextComponent parentComponent) throws LogicException {
         TextComponent component = null;
         List<String> matches;
         String textForNextParser;

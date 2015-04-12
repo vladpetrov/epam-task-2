@@ -1,7 +1,5 @@
 package by.epam.training.task02.entity;
 
-import java.util.List;
-
 /**
  * Created by Higgs on 08.04.2015.
  */

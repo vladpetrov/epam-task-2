@@ -19,7 +19,7 @@ public final class RegexTools {
     }
 
     public static List<String> findByRegex(String regex, String text) {
-        if(matches(regex, text)) {                        //TODO: optimize code
+        if (matches(regex, text)) {                        //TODO: optimize code
             pattern = Pattern.compile(regex, Pattern.MULTILINE);        //Multiline regex matching
             matcher = pattern.matcher(text);
             resultList = new ArrayList<>();
@@ -41,7 +41,7 @@ public final class RegexTools {
         }
         return resultString;
     }
-    
+
     public static boolean matches(String regex, String text) {
         pattern = Pattern.compile(regex, Pattern.MULTILINE);        //Multiline regex matching
         matcher = pattern.matcher(text);
@@ -70,7 +70,6 @@ public final class RegexTools {
         }
         return resultString;
     }
-
 
 
 }

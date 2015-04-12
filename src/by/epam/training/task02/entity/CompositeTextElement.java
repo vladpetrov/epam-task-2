@@ -20,8 +20,8 @@ public class CompositeTextElement extends TextComponent {
     @Override
     public String print() {
         String text = "";
-        for(TextComponent component : children) {
-            if((component.getClass() != LeafTextElement.class) && (component.getContentText() != "")) {
+        for (TextComponent component : children) {
+            if ((component.getClass() != LeafTextElement.class) && (component.getContentText() != "")) {
                 text += component.getContentText();
             }
             text += component.print();

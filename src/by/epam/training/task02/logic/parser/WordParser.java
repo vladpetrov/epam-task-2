@@ -25,8 +25,8 @@ public class WordParser extends Parser {
         TextComponent component;
         List<String> matches;
 
-        if (RegexTools.matches(RegexConstants.WORD_REGEX, text)) {
-            matches = RegexTools.findByRegex(RegexConstants.WORD_REGEX, text);
+        if (RegexTools.matches(RegexConstants.SENTENCE_SYMBOL_REGEX, text)) {
+            matches = RegexTools.findByRegex(RegexConstants.SENTENCE_SYMBOL_REGEX, text);
             for (String match : matches) {
                 component = new LeafTextElement(match);
                 parentComponent.addTextComponent(component);

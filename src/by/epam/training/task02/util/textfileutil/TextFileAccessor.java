@@ -12,33 +12,33 @@ public final class TextFileAccessor {
 
     public static String readFromFile(String fileName) {
         StringBuilder sb = new StringBuilder();
-        try{
+        try {
             BufferedReader in = new BufferedReader(new FileReader(
                     new File(fileName).getAbsoluteFile()));
-            try{
+            try {
                 String s;
-                while((s = in.readLine()) != null) {
+                while ((s = in.readLine()) != null) {
                     sb.append(s);
                     sb.append("\n");
                 }
             } finally {
                 in.close();
             }
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return sb.toString();
     }
 
     public static void writeToFile(String fileName, String text) {
-        try{
+        try {
             PrintWriter out = new PrintWriter(new File(fileName).getAbsoluteFile());
             try {
                 out.print(text);
             } finally {
                 out.close();
             }
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
