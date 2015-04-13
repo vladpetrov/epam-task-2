@@ -1,0 +1,30 @@
+<project name="InformationHandling" default="build">
+    <property name="dest" value="classes/"/>
+
+    <target name="build" depends="clean,init">
+        <echo message="build target"/>
+        <javac srcdir="src/" destdir="classes/" includeantruntime="false">
+            <classpath>
+                <fileset dir="src/resources">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+        <java classname="by.epam.training.task02.run.Runner" classpath="${dest}">
+            <classpath>
+                <fileset dir="src/resources">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${dest}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${dest}"/>
+    </target>
+
+</project>

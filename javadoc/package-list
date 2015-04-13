@@ -1,0 +1,8 @@
+by.epam.training.task02.entity
+by.epam.training.task02.logic
+by.epam.training.task02.logic.parser
+by.epam.training.task02.minitask
+by.epam.training.task02.run
+by.epam.training.task02.util.comparator
+by.epam.training.task02.util.regexutil
+by.epam.training.task02.util.textfileutil
